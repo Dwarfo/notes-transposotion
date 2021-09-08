@@ -1,17 +1,32 @@
 <template>
-    <div class="router-link" 
+    <router-link 
+        :to="setNoteListLink(entry.id)"
         :key=entry.id
-        v-for="entry in notesListEntry" >
-        {{entry.name}}  {{entry.id}}
-    </div>
+        v-for="entry in notesListEntry"
+        >
+        {{entry.name}}
+    </router-link>
+    <router-view></router-view>
 </template>
 
 <script>
 
 export default {
+    computed:{
+        noteListLink(){
+            return {
+                name: 'notelist-links',
+                params: { notelistId: this.id },
+                query: { sort: 'asc' },
+            };
+        }
+    },
     data(){
         return{
-            notesListEntry: []
+            notesListEntry: [
+                {id: 1, name: 'testEntry1'},
+                {id: 2, name: 'testEntry2'}
+            ]
         }
     },
     mounted(){
@@ -21,6 +36,11 @@ export default {
                 this.notesListEntry = entries;
             }
         );*/
+    },
+    methods:{
+        setNoteListLink(entryId){
+            return '/noteLists/' + entryId;
+        }
     }
 }
 </script>

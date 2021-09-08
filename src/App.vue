@@ -1,5 +1,5 @@
 <template>
-  <notelist-links></notelist-links>
+  <the-nav></the-nav>
   <router-view></router-view>
 </template>
 
@@ -7,14 +7,14 @@
 
 //import NoteSymbol from './components/NoteSymbol.vue'
 //import FullNoteSheet from './components/FullNoteSheet.vue'
-import NoteListLinks from './components/NoteListLinks.vue'
+import TheNavigation from './components/TheNavigation.vue'
 
 
 
 export default {
   name: 'App',
   components: {
-    'notelist-links': NoteListLinks
+    'the-nav': TheNavigation
   }
 }
 </script>

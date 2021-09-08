@@ -168,13 +168,12 @@ export default {
                 order: 2
             }
         ]
-    ,
-            noteListArray:  [],
-            oldChunk: 0,
-            innerWidth: 0
         }
     },
     methods:{
+        writeDebug(){
+            console.log(this.$route.query.notelistId);
+        },
         init(){
             this.innerWidth = window.innerWidth;
             //this.noteService.getNotesById(this.route.snapshot.params['id']).subscribe(
@@ -213,7 +212,8 @@ export default {
             }
         }
     },
-    mounted() {
+    created() {
+        this.writeDebug();
         this.init();
     }
 }
