@@ -80,7 +80,7 @@ export default {
     }
 
     .mrg_t_20{
-        margin-top: 40px;
+        margin-top: 100px;
     }
 
     .note_key {
@@ -117,7 +117,7 @@ export default {
     .key_img {
         width: 83px;
         position: absolute;
-        top: 86px;
+        top: 115px;
         left: 15px;
     }
 </style>

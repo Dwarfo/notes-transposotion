@@ -8,29 +8,29 @@ const router = createRouter({
     routes: [
         { path: '/', redirect: '/welcome' },
         {
+          name: 'FNS',
+          path: '/fns',
+          component: FullNoteSheet
+        },
+        {
           name: 'welcome',
           path: '/welcome',
           component: WelcomePage
         },
         {
-            path: '/noteLists',
-            component: NoteListLinks
-        },
-        {
             name:'noteLists',
-            path: '/noteLists/:id',
-            components: FullNoteSheet
+            path: '/noteLists',
+            component: NoteListLinks,
+            children: [
+              {
+                name:'noteListSheets',
+                path: ':id',
+                component: FullNoteSheet
+              }
+            ]
         }
     ],
-      //{ path: '/:notFound(.*)', component: NotFound }
-    linkActiveClass: 'active',
-    scrollBehavior(_, _2, savedPosition) {
-      // console.log(to, from, savedPosition);
-      if (savedPosition) {
-        return savedPosition;
-      }
-      return { left: 0, top: 0 };
-    }
+    linkActiveClass: 'active'
   });  
 
 export default router;

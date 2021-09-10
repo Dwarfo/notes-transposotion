@@ -9,6 +9,7 @@
 
 <script>
 import NoteList from './NoteList.vue'
+import axios from 'axios';
 
 export default {
     components:{
@@ -16,174 +17,15 @@ export default {
     },
     data() {
         return {
-            allNotes: [
-            {
-                time:0,
-                note: 5,
-                order: 0
-            },
-            {
-                time:1,
-                note: 8,
-                order: 1
-            },
-            {
-                time:2,
-                note: 0,
-                order: 2
-            },
-            {
-                time:3,
-                note: 3,
-                order: 2
-            },
-            {
-                time:4,
-                note: 0,
-                order: 2
-            },
-            {
-                time:5,
-                note: 8,
-                order: 2
-            },
-            {
-                time:6,
-                note: 5,
-                order: 0
-            },
-            {
-                time:7,
-                note: 8,
-                order: 1
-            },
-            {
-                time:8,
-                note: 0,
-                order: 2
-            },
-            {
-                time:9,
-                note: 3,
-                order: 2
-            },
-            {
-                time:10,
-                note: 0,
-                order: 2
-            },
-            {
-                time:11,
-                note: 8,
-                order: 2
-            },
-            {
-                time:12,
-                note: 5,
-                order: 0
-            },
-            {
-                time:13,
-                note: 8,
-                order: 1
-            },
-            {
-                time:14,
-                note: 0,
-                order: 2
-            },
-            {
-                time:15,
-                note: 3,
-                order: 2
-            },
-            {
-                time:16,
-                note: 0,
-                order: 2
-            },
-            {
-                time:17,
-                note: 8,
-                order: 2
-            },
-            {
-                time:18,
-                note: 5,
-                order: 0
-            },
-            {
-                time:19,
-                note: 8,
-                order: 1
-            },
-            {
-                time:20,
-                note: 0,
-                order: 2
-            },
-            {
-                time:21,
-                note: 3,
-                order: 2
-            },
-            {
-                time:22,
-                note: 0,
-                order: 2
-            },
-            {
-                time:23,
-                note: 8,
-                order: 2
-            },
-            {
-                time:24,
-                note: 5,
-                order: 0
-            },
-            {
-                time:25,
-                note: 8,
-                order: 1
-            },
-            {
-                time:26,
-                note: 0,
-                order: 2
-            },
-            {
-                time:27,
-                note: 3,
-                order: 2
-            },
-            {
-                time:28,
-                note: 0,
-                order: 2
-            },
-            {
-                time:29,
-                note: 8,
-                order: 2
-            }
-        ]
+            noteListArray:[]
         }
     },
     methods:{
         writeDebug(){
-            console.log(this.$route.query.notelistId);
+            console.log('notelist id: ' + this.$route.query.notelistId);
         },
         init(){
             this.innerWidth = window.innerWidth;
-            //this.noteService.getNotesById(this.route.snapshot.params['id']).subscribe(
-            //    allNotelist => {
-            //        this.allNotes = allNotelist;
-            //        this.setNotes(allNotelist);
-            //    }
-            //);
-
-            this.setNotes(this.allNotes);
         },
         calculateChunk() {
             return Math.floor(this.innerWidth / 40) - 1;
@@ -213,6 +55,16 @@ export default {
         }
     },
     created() {
+
+        axios.get('http://localhost:3000/notes/1')
+        .then( response => {
+            console.log('Response is: ' + response);
+            this.setNotes(response);
+        })
+        .catch(e => {
+            this.errors.push(e);
+        })
+
         this.writeDebug();
         this.init();
     }
@@ -222,6 +74,6 @@ export default {
 <style scoped>
     .line_offset
     {
-        margin-top: 100px
+        margin-top: 50px
     }
 </style>

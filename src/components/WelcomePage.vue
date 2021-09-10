@@ -14,7 +14,11 @@
 <script>
 
 export default {
-    
+    data(){
+        return{
+            numberOfNotelists: 0
+        }
+    }
 }
 </script>
 
